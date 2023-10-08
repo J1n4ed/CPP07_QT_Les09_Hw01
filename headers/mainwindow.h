@@ -32,6 +32,11 @@ private slots:
     void on_pb_exit_clicked();
     void on_rb_send_time_clicked();
     void on_rb_send_text_clicked();
+    void on_pb_send_string_clicked();
+
+signals:
+
+    void signal_sendStringTime();
 
 private:
 

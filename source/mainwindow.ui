@@ -76,7 +76,7 @@
              <item>
               <widget class="QRadioButton" name="rb_send_time">
                <property name="text">
-                <string>Отправлять текущее время</string>
+                <string>Отправлять текущее время + строку по нажатию</string>
                </property>
                <property name="checked">
                 <bool>true</bool>
@@ -86,7 +86,7 @@
              <item>
               <widget class="QRadioButton" name="rb_send_text">
                <property name="text">
-                <string>Отправлять строку + текущее время</string>
+                <string>Постоянно отправлять строку + текущее время</string>
                </property>
               </widget>
              </item>
@@ -118,13 +118,20 @@
              <item>
               <widget class="QLineEdit" name="le_data">
                <property name="enabled">
-                <bool>false</bool>
+                <bool>true</bool>
                </property>
                <property name="minimumSize">
                 <size>
                  <width>400</width>
                  <height>0</height>
                 </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pb_send_string">
+               <property name="text">
+                <string>Отправить строку вместе со временем</string>
                </property>
               </widget>
              </item>

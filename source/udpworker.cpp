@@ -1,12 +1,6 @@
 #include "../headers/udpworker.h"
 
-UDPworker::UDPworker(QObject *parent) : QObject(parent)
-{
-
-
-
-}
-
+UDPworker::UDPworker(QObject *parent) : QObject(parent) { }
 
 /*!
  * @brief Метод инициализирует UDP сервер
