@@ -25,15 +25,15 @@ MainWindow::MainWindow(QWidget *parent)
     {
         QByteArray dataToSend;
         QDataStream outStr(&dataToSend, QIODevice::WriteOnly);
+        QDateTime dateTime = QDateTime::currentDateTime();
 
         if (sendTime)
-        {
-            QDateTime dateTime = QDateTime::currentDateTime();
+        {            
             outStr << dateTime;
         }
         else if (!sendTime)
         {
-             outStr << ui->le_data->text();
+             outStr << dateTime << ui->le_data->text();
         }
 
         udpWorker->SendDatagram(dataToSend);
@@ -76,21 +76,20 @@ void MainWindow::DisplayData(QByteArray data, QString address, uint32_t size)
 
     QString displayText;
 
-
     QDataStream inStr(&data, QIODevice::ReadOnly);
 
+    QDateTime dateTime;
+    inStr >> dateTime;
 
     if (sendTime)
-    {
-        QDateTime dateTime;
-        inStr >> dateTime;
-        displayText = "Текущее время: " + dateTime.toString() + ". Принято пакетов " + QString::number(counterPck);
+    {        
+        displayText = "> Получено: время - " + dateTime.toString() + ". Принято пакетов - " + QString::number(counterPck);
     }
     else if (!sendTime)
     {
         QString rcvText;
         inStr >> rcvText;
-        displayText = "Получена строка: " + rcvText + ", адрес: " + address + ", размер сообщения: " + QString::number(size) + ". Принято пакетов " + QString::number(counterPck);
+        displayText = "> Получено: время - " + dateTime.toString() + ", строка: " + rcvText + ", адрес: " + address + ", размер сообщения: " + QString::number(size) + ". Принято пакетов " + QString::number(counterPck);
     }
 
     ui->te_result->append(displayText);

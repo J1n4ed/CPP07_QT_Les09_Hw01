@@ -37,7 +37,7 @@ void UDPworker::ReadDatagram(QNetworkDatagram datagram)
     QString address;
     address = datagram.senderAddress().toString();
     uint32_t dgSize;
-    dgSize = sizeof(data);
+    dgSize = std::size(data);
 
     emit sig_sendDataToGUI(data, address, dgSize);
 }
